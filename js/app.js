@@ -6,6 +6,7 @@ import * as entrada from './entrada.js';
 import * as jardin from './jardin.js';
 import * as cartas from './cartas.js';
 import * as juegos from './juegos.js';
+import * as musica from './musica.js';
 
 const SECCIONES = { entrada, jardin, cartas, juegos };
 const montadas = new Set();
@@ -71,6 +72,7 @@ async function iniciar() {
   addEventListener('hashchange', () => mostrar(rutaActual()));
   mostrar(rutaActual(), { enfocar: false });
   cartas.revisarNovedades().catch((error) => console.error(error));
+  musica.montar().catch((error) => console.error(error));
 }
 
 iniciar();

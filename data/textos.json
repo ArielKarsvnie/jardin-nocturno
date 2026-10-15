@@ -86,6 +86,16 @@
     "cerrar": "Cerrar carta"
   },
 
+  "musica": {
+    "poner": "Poner nuestra canción",
+    "pausar": "Pausar la canción",
+    "reproductor": "Reproductor de música",
+    "ocultar": "Ocultar reproductor",
+    "ayuda": "Tu celular es desconfiado: tocá el ▶ de acá abajo y arranca.",
+    "error": "Spotify no quiso venir. Probá de nuevo en un ratito.",
+    "nota": "Si suenan solo 30 segundos, iniciá sesión en Spotify desde este navegador."
+  },
+
   "juegos": {
     "titulo": "Rincón de juegos",
     "bajada": "Para cuando ganar me importe más que vos. O sea, nunca. Bueno, a veces.",
@@ -94,6 +104,9 @@
       "titulo": "Próximamente",
       "texto": "Acá van a crecer juegos. Las semillas ya están compradas; falta que el jardinero se ponga las pilas.",
       "nota": "se aceptan sugerencias (y quejas por escrito)"
-    }
+    },
+    "jugar": "Jugar",
+    "volver": "Volver a los juegos",
+    "error": "Este juego se rompió. El jardinero ya fue avisado (mentira, avisale vos)."
   }
 }

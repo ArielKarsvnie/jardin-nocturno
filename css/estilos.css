@@ -1019,6 +1019,141 @@ html.con-modal { overflow: hidden; }
 .margarita-tinta .centro { fill: var(--amarillo); stroke: var(--tinta); stroke-width: 2; }
 .margarita-tinta .tallo { fill: var(--musgo-oscuro); stroke: var(--tinta); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+/* ---------- Música ---------- */
+.musica-boton {
+  position: fixed;
+  top: calc(.5rem + env(safe-area-inset-top));
+  right: max(1rem, calc((100vw - var(--ancho)) / 2 + 1rem));
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: 1.5px solid var(--linea);
+  border-radius: 50%;
+  background: var(--noche-2);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: border-color .3s, box-shadow .3s, opacity .3s;
+}
+.musica-boton svg { width: 36px; height: 36px; }
+.musica-boton:active { scale: .92; }
+.musica-boton.cargando { opacity: .6; }
+.musica-boton.cargando svg { animation: girar 1.2s linear infinite; }
+.musica-boton.sonando {
+  border-color: var(--amarillo);
+  box-shadow: 0 0 18px -4px rgb(242 200 75 / .6);
+}
+.musica-boton.sonando svg { animation: girar 3.6s linear infinite; }
+@keyframes girar { to { rotate: 360deg; } }
+
+.musica-panel {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: calc(var(--nav-alto) + env(safe-area-inset-bottom) + .75rem);
+  z-index: 35;
+  max-width: 30rem;
+  margin-inline: auto;
+  padding: .6rem .75rem .7rem;
+  border: 1px solid var(--linea);
+  border-radius: 18px;
+  background: var(--noche-2);
+  box-shadow: var(--sombra);
+  transition: transform .45s var(--facil), opacity .3s, visibility 0s;
+}
+/* Oculto, pero sin display:none: el reproductor sigue sonando */
+.musica-panel.oculto {
+  transform: translateY(calc(100% + 140px));
+  opacity: 0;
+  visibility: hidden;
+  transition: transform .45s var(--facil), opacity .3s, visibility 0s .45s;
+}
+body[data-ruta="entrada"] .musica-panel { bottom: calc(1rem + env(safe-area-inset-bottom)); }
+
+.musica-panel__cabeza {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  color: var(--amarillo-claro);
+}
+.musica-panel__cabeza .manuscrita { font-size: 1.3rem; }
+.musica-panel__ocultar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--crema-tenue);
+  cursor: pointer;
+}
+.musica-panel__ocultar svg { width: 20px; height: 20px; }
+.musica-panel__ayuda {
+  margin: .1rem 0 .5rem;
+  color: var(--amarillo);
+  font-size: .95rem;
+}
+.musica-panel__embed {
+  min-height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--noche-3);
+}
+.musica-panel__embed iframe { display: block; border: 0; }
+.musica-panel__nota {
+  margin-top: .45rem;
+  color: var(--crema-tenue);
+  font-size: .8rem;
+  line-height: 1.35;
+}
+
+/* ---------- Rincón de juegos ---------- */
+.juegos-lista {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.juego-tarjeta {
+  display: grid;
+  gap: .3rem;
+  width: 100%;
+  padding: 1.1rem 1.2rem;
+  border: 1.5px solid var(--linea);
+  border-radius: var(--borde-a-mano);
+  background: var(--noche-2);
+  color: var(--crema);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.juego-tarjeta:active { scale: .98; }
+.juego-tarjeta strong { font-size: 1.3rem; }
+.juego-tarjeta span { color: var(--crema-tenue); }
+.juego-tarjeta .manuscrita { color: var(--amarillo); font-size: 1.3rem; }
+
+.juego-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 48px;
+  margin-bottom: 1rem;
+  padding: 0 .4rem 0 0;
+  border: 0;
+  background: none;
+  color: var(--amarillo);
+  font: inherit;
+  cursor: pointer;
+}
+.juego-volver svg { width: 22px; height: 22px; transform: scaleX(-1); }
+
 /* ---------- Mensajes ---------- */
 .vacio { text-align: center; color: var(--crema-tenue); padding: 2rem 0; }
 
