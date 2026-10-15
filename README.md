@@ -21,6 +21,13 @@ y entrá a <http://localhost:8000>.
 
 Lo que está marcado con `[REEMPLAZAR]` es de ejemplo.
 
+## Probar las cartas antes de su fecha
+
+Solo en tu compu o tu Wi-Fi (en GitHub Pages no funciona), agregá `?ahora=` con el momento que quieras simular:
+
+- <http://localhost:8000/?ahora=2026-11-08T23:59:50-03:00#cartas> → ves cómo se abre sola a medianoche.
+- <http://localhost:8000/?ahora=2026-11-10T12:00:00-03:00#cartas> → ves la carta ya abierta.
+
 ## Fotos (automático)
 
 1. Una sola vez en esta compu:

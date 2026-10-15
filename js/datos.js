@@ -35,6 +35,12 @@ export function t(clave, variables = {}) {
   return typeof valor === 'string' ? interpolar(valor, variables) : clave;
 }
 
+// Para listas de textos: ["uno", "otro", ...]
+export function tLista(clave) {
+  const valor = obtener(clave);
+  return Array.isArray(valor) ? valor : [];
+}
+
 // Para textos con singular y plural: { "uno": "...", "varios": "... {n} ..." }
 export function tn(clave, n) {
   const valor = obtener(clave);

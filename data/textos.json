@@ -62,11 +62,28 @@
   "cartas": {
     "titulo": "Cartas selladas",
     "bajada": "Se abren solas cuando llega su día. Ni un minuto antes. Lo intenté.",
-    "contador": {
-      "uno": "{n} carta esperando su fecha",
-      "varios": "{n} cartas esperando su fecha"
+    "cerrada": "Cerrada",
+    "abre": "Se abre el {fecha}",
+    "falta": {
+      "dias": { "uno": "Falta {n} día", "varios": "Faltan {n} días" },
+      "horas": "Faltan {h} h {m} min",
+      "minutos": { "uno": "Falta {n} minuto", "varios": "Faltan {n} minutos" },
+      "segundos": { "uno": "Falta {n} segundo", "varios": "Faltan {n} segundos" }
     },
-    "prontito": "Están en camino. Las mandé por correo, así que paciencia."
+    "leer": "Tocá para leer",
+    "releer": "Tocá para releer",
+    "nueva": "¡nueva!",
+    "candadoGenerico": "Todavía no. La paciencia es una virtud (dicen).",
+    "insistencia": [
+      "Sigue cerrada.",
+      "Mirarla fijo no la abre.",
+      "Te admiro la perseverancia. Igual no.",
+      "Ok, lo anoto: alguien está ansiosa.",
+      "Si la sacudís tampoco sale nada. Ya probé."
+    ],
+    "recienAbierta": "¡Se abrió! Llegaste justo.",
+    "vacio": "Todavía no hay cartas. El cartero está de paro.",
+    "cerrar": "Cerrar carta"
   },
 
   "juegos": {

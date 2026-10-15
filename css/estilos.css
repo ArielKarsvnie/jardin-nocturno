@@ -52,6 +52,7 @@
 [hidden] { display: none !important; }
 
 html {
+  overflow-x: clip;
   color-scheme: dark;
   -webkit-text-size-adjust: 100%;
   background: var(--noche);
@@ -777,6 +778,198 @@ html.con-modal { overflow: hidden; }
 .tarjeta-suave svg { width: 40px; height: 40px; color: var(--amarillo); }
 .tarjeta-suave .manuscrita { color: var(--amarillo); }
 .tarjeta-suave p:not(.manuscrita) { color: var(--crema-tenue); max-width: 30ch; }
+
+/* ---------- Cartas selladas ---------- */
+.cartas-lista {
+  overflow-x: clip; /* la solapa en 3D no debe ensanchar la página */
+  display: grid;
+  gap: 2.5rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.carta-item {
+  display: grid;
+  justify-items: center;
+  gap: .7rem;
+  text-align: center;
+}
+
+.sobre {
+  position: relative;
+  width: min(100%, 20rem);
+  aspect-ratio: 16 / 10;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: #e9dcbd;
+  color: var(--tinta);
+  font: inherit;
+  box-shadow: var(--sombra);
+  rotate: var(--giro, 0deg);
+  perspective: 600px;
+  transition: margin-top .7s var(--facil);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.sobre:active { scale: .97; }
+.sobre.temblando { animation: temblor .45s; }
+@keyframes temblor {
+  20%, 60% { translate: -7px 0; }
+  40%, 80% { translate: 7px 0; }
+}
+
+/* Capas: hoja (atrás) < pliegue de abajo < solapa cerrada < título y sello */
+.sobre__hoja {
+  position: absolute;
+  inset: 8% 7% 10%;
+  z-index: 1;
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(transparent 0 13px, rgb(42 33 26 / .14) 13px 14px) 0 18px / 100% 100% no-repeat,
+    #fffdf7;
+  transition: translate .7s var(--rebote) .45s;
+}
+.sobre__pliegue {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 6px;
+  background: var(--papel);
+  clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%);
+}
+.sobre__solapa {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 60%;
+  z-index: 3;
+  background: linear-gradient(#ddcca6, #e6d6b2);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: 50% 0;
+  transition: transform .7s var(--facil), z-index 0s .35s;
+}
+.sobre__titulo {
+  position: absolute;
+  inset: auto 1rem 12%;
+  z-index: 4;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.sobre__sello {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border-radius: 46% 54% 50% 50% / 52% 48% 52% 48%;
+  background: radial-gradient(circle at 35% 30%, #f8dc84, #d4a437 55%, #9a7020);
+  box-shadow: 0 3px 6px -2px rgb(0 0 0 / .5), inset 0 0 0 3px rgb(154 112 32 / .5);
+  color: #5c4210;
+  transition: scale .4s var(--rebote), opacity .3s;
+}
+.sobre__sello svg { width: 24px; height: 24px; }
+
+/* Abierta: la solapa se da vuelta, la hoja asoma y el sello se va */
+.sobre--abierta .sobre__solapa {
+  z-index: 0;
+  transform: rotateX(180deg);
+}
+.sobre--abierta .sobre__hoja { translate: 0 -38%; }
+/* Lugar para la solapa abierta, que sobresale por arriba (60% del alto del sobre) */
+.sobre--abierta { margin-top: min(37.5%, 7.5rem); }
+.sobre--abierta .sobre__sello { scale: 0; opacity: 0; }
+
+.sobre__nueva {
+  position: absolute;
+  top: -.9rem;
+  right: -.5rem;
+  z-index: 6;
+  display: none;
+  padding: 0 .5rem;
+  border-radius: 8px;
+  background: var(--amarillo);
+  color: var(--tinta);
+  font-size: 1.2rem;
+  font-weight: 700;
+  rotate: 8deg;
+}
+.sobre--nueva .sobre__nueva { display: block; }
+.sobre--nueva { box-shadow: var(--sombra), 0 0 0 3px rgb(242 200 75 / .35), 0 0 40px -6px rgb(242 200 75 / .45); }
+
+.sobre__info {
+  display: grid;
+  gap: .1rem;
+  color: var(--crema-tenue);
+  font-size: .95rem;
+}
+.sobre__info strong { color: var(--crema); font-size: 1.05rem; font-weight: 600; }
+
+.sobre__globo {
+  position: relative;
+  max-width: 24ch;
+  padding: .55rem 1rem;
+  border-radius: 14px;
+  background: var(--noche-3);
+  color: var(--amarillo-claro);
+  font-size: 1.3rem;
+  animation: aparecer .3s var(--facil);
+}
+.sobre__globo::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  background: inherit;
+  rotate: 45deg;
+}
+.sobre__globo:empty { display: none; }
+
+/* Carta abierta: papel rayado */
+.carta__papel {
+  --renglon: 1.85rem;
+  padding: 1.2rem 1.2rem 1.5rem 2.2rem;
+  border-radius: 4px;
+  background:
+    linear-gradient(90deg, transparent 1.5rem, rgb(122 79 14 / .35) 1.5rem calc(1.5rem + 1.5px), transparent calc(1.5rem + 1.5px)),
+    repeating-linear-gradient(transparent 0 calc(var(--renglon) - 1px), rgb(42 33 26 / .13) calc(var(--renglon) - 1px) var(--renglon)),
+    #fffaf0;
+  background-attachment: local;
+  line-height: var(--renglon);
+}
+.carta__papel.desplegar { animation: desplegar .6s var(--facil); }
+@keyframes desplegar {
+  from { opacity: 0; transform: scaleY(.25) rotate(-2deg); transform-origin: 50% 0; }
+}
+.carta h2 { font-size: 1.8rem; line-height: var(--renglon); margin: .2rem 0 .4rem; }
+.carta__texto { display: grid; gap: var(--renglon); color: var(--tinta-suave); }
+.carta__firma {
+  margin-top: var(--renglon);
+  text-align: right;
+  color: var(--tinta-ambar);
+  font-size: 1.9rem;
+}
+
+/* Puntito en el menú cuando hay una carta nueva */
+.navegacion a { position: relative; }
+.navegacion a.con-novedad::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: calc(50% + 10px);
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--noche);
+  border-radius: 50%;
+  background: var(--amarillo);
+}
 
 /* ---------- Paquete de semillas (juegos "próximamente") ---------- */
 .paquete {

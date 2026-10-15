@@ -1,10 +1,11 @@
 // Tarjeta de un recuerdo: foto tipo polaroid, fecha, anécdota y pie de foto.
-// Se cierra con la X, tocando afuera o con el botón "atrás" del celular.
+// Se cierra como cualquier ventana (ver modal.js).
 // Se pasa de un recuerdo a otro deslizando o con las flechas.
 
 import { t } from './datos.js';
 import { crear, icono } from './dom.js';
 import { formatearFecha } from './fechas.js';
+import { abrirModal } from './modal.js';
 
 let dialogo;
 let partes;
@@ -63,12 +64,6 @@ function mover(paso) {
   if (lista.length > 1) pintar(actual + paso, paso);
 }
 
-function cerrarDesdeLaInterfaz() {
-  // Si abrimos con una entrada en el historial, "atrás" la saca y el popstate cierra.
-  if (history.state?.tarjeta) history.back();
-  else dialogo.close();
-}
-
 function preparar() {
   dialogo = document.querySelector('[data-tarjeta]');
   const q = (sel) => dialogo.querySelector(sel);
@@ -83,26 +78,12 @@ function preparar() {
     pasos: q('[data-pasos]'),
   };
 
-  q('[data-accion="cerrar"]').addEventListener('click', cerrarDesdeLaInterfaz);
   q('[data-accion="anterior"]').addEventListener('click', () => mover(-1));
   q('[data-accion="siguiente"]').addEventListener('click', () => mover(1));
 
-  // Tocar el fondo oscuro cierra.
-  dialogo.addEventListener('click', (e) => {
-    if (e.target === dialogo) cerrarDesdeLaInterfaz();
-  });
-  // Escape (teclado) pasa por el mismo camino que la X.
-  dialogo.addEventListener('cancel', (e) => {
-    e.preventDefault();
-    cerrarDesdeLaInterfaz();
-  });
   dialogo.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') mover(1);
     if (e.key === 'ArrowLeft') mover(-1);
-  });
-  dialogo.addEventListener('close', () => document.documentElement.classList.remove('con-modal'));
-  addEventListener('popstate', () => {
-    if (dialogo.open) dialogo.close();
   });
 
   // Deslizar a los costados para pasar de recuerdo.
@@ -123,10 +104,5 @@ export function abrirTarjeta(recuerdos, indice, opciones = {}) {
   lista = recuerdos;
   alVer = opciones.alVer;
   pintar(indice);
-
-  if (!dialogo.open) {
-    dialogo.showModal();
-    document.documentElement.classList.add('con-modal');
-    history.pushState({ tarjeta: true }, '');
-  }
+  abrirModal(dialogo);
 }

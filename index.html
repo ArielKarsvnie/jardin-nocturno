@@ -169,6 +169,19 @@
     </div>
   </dialog>
 
+  <!-- Carta abierta (la llena js/cartas.js) -->
+  <dialog class="tarjeta carta" data-carta aria-labelledby="carta-titulo">
+    <button class="tarjeta__cerrar" type="button" data-accion="cerrar" data-texto-aria="cartas.cerrar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-cerrar"/></svg>
+    </button>
+    <article class="tarjeta__papel carta__papel" data-papel>
+      <p class="tarjeta__fecha" data-fecha></p>
+      <h2 id="carta-titulo" data-titulo></h2>
+      <div class="carta__texto" data-cuerpo></div>
+      <p class="carta__firma manuscrita" data-firma></p>
+    </article>
+  </dialog>
+
   <div class="aviso" role="alert" data-aviso hidden></div>
 
   <!-- Íconos y dibujos reutilizables -->
@@ -196,6 +209,11 @@
     <symbol id="ico-juego" viewBox="0 0 24 24">
       <rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="1.8" transform="rotate(-6 12 12)"/>
       <g fill="currentColor"><circle cx="8.8" cy="9.2" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="15.2" cy="14.8" r="1.4"/></g>
+    </symbol>
+    <symbol id="ico-candado" viewBox="0 0 24 24">
+      <path d="M8.3 11V8.2a3.7 3.7 0 0 1 7.4 0V11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <rect x="5.5" y="10.5" width="13" height="10" rx="2.4" fill="currentColor"/>
+      <circle cx="12" cy="15" r="1.5" fill="#f1e6cc"/>
     </symbol>
     <symbol id="ico-cerrar" viewBox="0 0 24 24">
       <path d="M6.5 6.8c3.6 3.2 7.4 7 11 10.6M17.3 6.4c-3.4 3.8-7 7.4-10.8 11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>

@@ -70,6 +70,7 @@ async function iniciar() {
   document.documentElement.classList.add('listo');
   addEventListener('hashchange', () => mostrar(rutaActual()));
   mostrar(rutaActual(), { enfocar: false });
+  cartas.revisarNovedades().catch((error) => console.error(error));
 }
 
 iniciar();
