@@ -15,12 +15,12 @@
     {
       "id": "primera-vez-en-tu-casa",
       "_placeholder": true,
-      "titulo": "[REEMPLAZAR] Primera vez",
+      "titulo": "Primera vez",
       "fecha": "2025-10-27",
       "foto": "su-casa.jpg",
       "alt": "Una bella vista con una hermosa mujer",
       "texto": "No podia estar más nervioso. Conocer tu casa, tu familia, y realmente pasar tiempo juntos. Ahí me di cuenta que la cosa iba enserio",
-      "pie": "",
+      "pie": ".",
       "flor": "aromo"
     },
     {
