@@ -1,0 +1,38 @@
+{
+  "_nota": "Cada recuerdo es una flor. Para sumar uno: copiá un bloque { ... }, pegalo al final (con una coma antes) y cambiá los datos. La foto va en fotos-originales/ con el mismo nombre que pongas en \"foto\". \"flor\" es opcional: margarita, jazmin, aromo o calendula.",
+
+  "recuerdos": [
+    {
+      "id": "ejemplo-curso",
+      "_placeholder": true,
+      "titulo": "[REEMPLAZAR] El curso de instructores",
+      "fecha": "2025-01-01",
+      "foto": "ejemplo-curso.jpg",
+      "alt": "[REEMPLAZAR] Descripción corta de la foto, para lectores de pantalla",
+      "texto": "[REEMPLAZAR] Acá va la anécdota de cómo nos conocimos en el curso. Dos o tres oraciones alcanzan.",
+      "pie": "[REEMPLAZAR] Un pie de foto gracioso",
+      "flor": "margarita"
+    },
+    {
+      "id": "ejemplo-7-diciembre",
+      "_placeholder": true,
+      "titulo": "[REEMPLAZAR] El 7 de diciembre",
+      "fecha": "2025-12-07",
+      "foto": "ejemplo-7-diciembre.jpg",
+      "alt": "[REEMPLAZAR] Descripción corta de la foto",
+      "texto": "[REEMPLAZAR] Qué pasó el día que empezamos.",
+      "pie": "[REEMPLAZAR] Otro pie de foto gracioso",
+      "flor": "aromo"
+    },
+    {
+      "id": "ejemplo-tercero",
+      "_placeholder": true,
+      "titulo": "[REEMPLAZAR] Un recuerdo cualquiera",
+      "fecha": "2026-03-01",
+      "foto": "ejemplo-tercero.jpg",
+      "alt": "[REEMPLAZAR] Descripción corta de la foto",
+      "texto": "[REEMPLAZAR] La anécdota.",
+      "pie": "[REEMPLAZAR] El chiste"
+    }
+  ]
+}

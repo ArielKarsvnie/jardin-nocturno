@@ -1,0 +1,29 @@
+{
+  "_nota": "Cada carta se abre en la fecha de \"abre\" (hora de Argentina, por eso termina en -03:00). \"candado\" es lo que se ve mientras está cerrada. \"texto\" es una lista de párrafos.",
+
+  "cartas": [
+    {
+      "id": "cumple-2026",
+      "_placeholder": true,
+      "titulo": "Feliz cumple, Sofi",
+      "abre": "2026-11-09T00:00:00-03:00",
+      "candado": "Ni lo intentes. Bueno, intentalo, pero no se abre hasta tu cumple.",
+      "texto": [
+        "[REEMPLAZAR] Primer párrafo de la carta.",
+        "[REEMPLAZAR] Segundo párrafo."
+      ],
+      "firma": "Arielito"
+    },
+    {
+      "id": "aniversario-1",
+      "_placeholder": true,
+      "titulo": "Un año",
+      "abre": "2026-12-07T00:00:00-03:00",
+      "candado": "Esta tiene fecha de vencimiento al revés: hasta el 7 de diciembre no sirve para nada.",
+      "texto": [
+        "[REEMPLAZAR] La carta del primer aniversario."
+      ],
+      "firma": "Arielito"
+    }
+  ]
+}

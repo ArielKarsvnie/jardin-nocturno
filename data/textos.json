@@ -1,0 +1,53 @@
+{
+  "_nota": "Textos de la interfaz. Cambiá lo que está entre comillas a la derecha; no toques los nombres de la izquierda. {n} se reemplaza por un número.",
+
+  "sitio": {
+    "titulo": "jardín nocturno",
+    "pie": "hecho a mano por Arielito"
+  },
+
+  "nav": {
+    "jardin": "Jardín",
+    "cartas": "Cartas",
+    "juegos": "Juegos"
+  },
+
+  "entrada": {
+    "saludo": "Hola, So.",
+    "titulo": "Esto es un jardín",
+    "texto": "Por ahora es tierra y buenas intenciones. Pero tiene futuro, como nosotros.",
+    "boton": "Plantar la semilla",
+    "nota": "(tranqui, no hay que regar nada)"
+  },
+
+  "jardin": {
+    "titulo": "El jardín",
+    "bajada": "Cada flor es un recuerdo. Tocalas sin miedo, que no pinchan.",
+    "contador": {
+      "uno": "{n} recuerdo germinando",
+      "varios": "{n} recuerdos germinando"
+    },
+    "vacio": "Todavía no brotó nada. El jardinero es lento, pero constante."
+  },
+
+  "cartas": {
+    "titulo": "Cartas selladas",
+    "bajada": "Se abren solas cuando llega su día. Ni un minuto antes. Lo intenté.",
+    "contador": {
+      "uno": "{n} carta esperando su fecha",
+      "varios": "{n} cartas esperando su fecha"
+    },
+    "prontito": "Están en camino. Las mandé por correo, así que paciencia."
+  },
+
+  "juegos": {
+    "titulo": "Rincón de juegos",
+    "bajada": "Para cuando ganar me importe más que vos. O sea, nunca. Bueno, a veces.",
+    "proximamente": {
+      "sello": "¡pronto!",
+      "titulo": "Próximamente",
+      "texto": "Acá van a crecer juegos. Las semillas ya están compradas; falta que el jardinero se ponga las pilas.",
+      "nota": "se aceptan sugerencias (y quejas por escrito)"
+    }
+  }
+}

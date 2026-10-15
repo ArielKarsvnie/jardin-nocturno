@@ -1,0 +1,9 @@
+# Fotos originales del celular: tienen ubicación GPS y pesan mucho. Nunca se suben.
+fotos-originales/
+
+__pycache__/
+.DS_Store
+Thumbs.db
+
+# Configuración local del editor
+.claude/

@@ -1,0 +1,38 @@
+{
+  "_nota": "Preguntas del mini-juego de entrada (se usa en la Etapa 3). Marcá con \"correcta\": true la respuesta buena. Las reacciones aparecen después de tocar una opción.",
+
+  "preguntas": [
+    {
+      "_placeholder": true,
+      "pregunta": "[REEMPLAZAR] ¿Dónde nos conocimos?",
+      "opciones": [
+        { "texto": "En un curso de instructores en Buenos Aires", "correcta": true },
+        { "texto": "[REEMPLAZAR] Opción absurda 1" },
+        { "texto": "[REEMPLAZAR] Opción absurda 2" }
+      ],
+      "siAcierta": "[REEMPLAZAR] Reacción si acierta",
+      "siFalla": "[REEMPLAZAR] Reacción si falla"
+    },
+    {
+      "_placeholder": true,
+      "pregunta": "[REEMPLAZAR] Pregunta con chiste interno",
+      "opciones": [
+        { "texto": "[REEMPLAZAR] Respuesta correcta", "correcta": true },
+        { "texto": "[REEMPLAZAR] Opción absurda" },
+        { "texto": "[REEMPLAZAR] Opción más absurda todavía" }
+      ],
+      "siAcierta": "[REEMPLAZAR] Reacción si acierta",
+      "siFalla": "[REEMPLAZAR] Reacción si falla"
+    },
+    {
+      "_placeholder": true,
+      "pregunta": "[REEMPLAZAR] Tercera pregunta",
+      "opciones": [
+        { "texto": "[REEMPLAZAR] Respuesta correcta", "correcta": true },
+        { "texto": "[REEMPLAZAR] Opción absurda" }
+      ],
+      "siAcierta": "[REEMPLAZAR] Reacción si acierta",
+      "siFalla": "[REEMPLAZAR] Reacción si falla"
+    }
+  ]
+}
