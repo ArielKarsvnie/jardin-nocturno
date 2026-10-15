@@ -13,14 +13,14 @@
       "flor": "margarita"
     },
     {
-      "id": "ejemplo-7-diciembre",
+      "id": "primera-vez-en-tu-casa",
       "_placeholder": true,
-      "titulo": "[REEMPLAZAR] El 7 de diciembre",
-      "fecha": "2025-12-07",
-      "foto": "ejemplo-7-diciembre.jpg",
-      "alt": "[REEMPLAZAR] Descripción corta de la foto",
-      "texto": "[REEMPLAZAR] Qué pasó el día que empezamos.",
-      "pie": "[REEMPLAZAR] Otro pie de foto gracioso",
+      "titulo": "[REEMPLAZAR] Primera vez",
+      "fecha": "2025-10-27",
+      "foto": "su-casa.jpg",
+      "alt": "Una bella vista con una hermosa mujer",
+      "texto": "No podia estar más nervioso. Conocer tu casa, tu familia, y realmente pasar tiempo juntos. Ahí me di cuenta que la cosa iba enserio",
+      "pie": "",
       "flor": "aromo"
     },
     {
