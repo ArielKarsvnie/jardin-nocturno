@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#14110f">
+  <meta name="color-scheme" content="dark">
+  <title>Jardín nocturno · admin</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500..700&family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <script type="module" src="js/admin/admin.js"></script>
+</head>
+<body class="admin">
+  <header class="cabecera">
+    <a class="marca" href="./">
+      <svg viewBox="0 0 40 48" aria-hidden="true"><use href="#ico-brote"/></svg>
+      <span>admin del jardín</span>
+    </a>
+  </header>
+
+  <main class="admin-main">
+    <!-- Sin token: solo se ve el candado -->
+    <section data-vista="candado" hidden aria-labelledby="t-candado">
+      <h1 id="t-candado">Solo para el jardinero</h1>
+      <p class="bajada">Para editar desde acá, pegá tu token de GitHub. Queda guardado solo en este navegador.</p>
+      <form class="admin-form" data-form-token>
+        <label class="campo">
+          <span>Token de GitHub</span>
+          <input type="password" name="token" autocomplete="off" spellcheck="false" required placeholder="github_pat_…">
+        </label>
+        <button class="boton boton--primario" type="submit">Entrar</button>
+      </form>
+      <details class="admin-ayuda">
+        <summary>¿Cómo consigo el token?</summary>
+        <ol>
+          <li>Entrá a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+          <li><b>Token name:</b> jardin-admin. <b>Expiration:</b> lo que quieras (por ejemplo, 1 año).</li>
+          <li><b>Repository access:</b> <i>Only select repositories</i> → <b>jardin-nocturno</b>.</li>
+          <li><b>Permissions → Repository permissions → Contents:</b> <i>Read and write</i>.</li>
+          <li><b>Generate token</b>, copialo (empieza con <code>github_pat_</code>) y pegalo acá.</li>
+        </ol>
+      </details>
+    </section>
+
+    <section data-vista="cargando" hidden>
+      <p class="manuscrita admin-cargando">Regando los datos…</p>
+    </section>
+
+    <!-- Lista de recuerdos -->
+    <section data-vista="lista" hidden aria-labelledby="t-lista">
+      <nav class="admin-pestanas" aria-label="Qué editar">
+        <span class="admin-pestana" aria-current="page">Recuerdos</span>
+        <span class="admin-pestana admin-pestana--pronto">Cartas <small>pronto</small></span>
+        <span class="admin-pestana admin-pestana--pronto">Preguntas <small>pronto</small></span>
+        <span class="admin-pestana admin-pestana--pronto">Textos <small>pronto</small></span>
+      </nav>
+      <div class="admin-titulo">
+        <h1 id="t-lista">Recuerdos</h1>
+        <button class="boton boton--primario" type="button" data-accion="nuevo">+ Nuevo</button>
+      </div>
+      <ul class="admin-lista" data-lista></ul>
+      <footer class="admin-pie">
+        <p data-repo></p>
+        <button class="boton boton--secundario" type="button" data-accion="olvidar">Olvidar token en este navegador</button>
+      </footer>
+    </section>
+
+    <!-- Formulario de un recuerdo -->
+    <section data-vista="formulario" hidden aria-labelledby="t-form">
+      <button class="juego-volver" type="button" data-accion="volver">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-flecha"/></svg> Volver a la lista
+      </button>
+      <h1 id="t-form" tabindex="-1" data-titulo-form>Nuevo recuerdo</h1>
+
+      <form class="admin-form" data-form-recuerdo novalidate>
+        <label class="campo">
+          <span>Título *</span>
+          <input name="titulo" required maxlength="80" placeholder="La primera cita">
+        </label>
+        <label class="campo">
+          <span>Fecha *</span>
+          <input name="fecha" type="date" required>
+        </label>
+
+        <div class="campo">
+          <span>Foto</span>
+          <div class="admin-foto">
+            <img data-vista-previa alt="" hidden>
+            <p class="admin-foto__info" data-foto-info>Sin foto: se va a ver un dibujo de flor.</p>
+          </div>
+          <label class="boton boton--secundario admin-foto__boton">
+            <input class="visualmente-oculto" type="file" name="foto" accept="image/*">
+            <span data-foto-boton>Elegir foto</span>
+          </label>
+        </div>
+
+        <label class="campo">
+          <span>Descripción de la foto <small>(para lectores de pantalla)</small></span>
+          <input name="alt" maxlength="160" placeholder="Los dos tomando un café en la plaza">
+        </label>
+        <label class="campo">
+          <span>La anécdota</span>
+          <textarea name="texto" rows="6" placeholder="Lo que pasó ese día. Dejá una línea en blanco para separar párrafos."></textarea>
+        </label>
+        <label class="campo">
+          <span>Pie de foto gracioso</span>
+          <input name="pie" maxlength="120" placeholder="El chiste">
+        </label>
+        <label class="campo">
+          <span>Flor</span>
+          <select name="flor">
+            <option value="">Que elija el jardín</option>
+            <option value="margarita">Margarita (blanca)</option>
+            <option value="jazmin">Jazmín (blanco)</option>
+            <option value="aromo">Aromo (amarillo)</option>
+            <option value="calendula">Caléndula (amarilla)</option>
+          </select>
+        </label>
+
+        <p class="admin-error" data-error-form role="alert" hidden></p>
+        <button class="boton boton--primario" type="submit" data-publicar>Publicar</button>
+      </form>
+    </section>
+  </main>
+
+  <div class="admin-estado" data-estado role="status" aria-live="polite" hidden></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="ico-brote" viewBox="0 0 40 48">
+      <path d="M20 46 C20 36 19.5 28 21 19" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M20.6 28 C12 28 7 22 6 15 C14 15 20 20 20.6 28Z" fill="currentColor"/>
+      <path d="M21 21 C28 20 33 14 34 7 C26 8 21.5 13 21 21Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="ico-flecha" viewBox="0 0 24 24">
+      <path d="M4.5 12.4c4.8-.5 9.6-.3 14.5 0M13.8 6.6c1.8 2 3.6 3.8 5.4 5.6-1.9 1.8-3.7 3.6-5.6 5.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+</body>
+</html>

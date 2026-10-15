@@ -1,0 +1,182 @@
+/* Admin: usa la paleta y los botones de estilos.css. */
+
+body.admin { padding-bottom: 6rem; }
+
+.admin-main {
+  max-width: var(--ancho);
+  margin-inline: auto;
+  padding: .5rem 1rem 2rem;
+}
+.admin-main h1 { font-size: clamp(2rem, 9vw, 2.6rem); margin-bottom: .5rem; }
+
+.admin-cargando { padding: 4rem 0; text-align: center; color: var(--amarillo); }
+
+/* ---------- Formularios ---------- */
+.admin-form {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+.campo { display: grid; gap: .4rem; }
+.campo > span { font-weight: 600; }
+.campo small { color: var(--crema-tenue); font-weight: 400; }
+
+.campo input:not([type="file"]),
+.campo textarea,
+.campo select {
+  width: 100%;
+  min-height: 52px;
+  padding: .75rem .9rem;
+  border: 1.5px solid var(--linea);
+  border-radius: 12px;
+  background: var(--noche-2);
+  color: var(--crema);
+  font: inherit;
+  font-size: 1rem; /* 16px: evita que el iPhone haga zoom al tocar */
+}
+.campo textarea { resize: vertical; line-height: 1.5; }
+.campo input:focus-visible,
+.campo textarea:focus-visible,
+.campo select:focus-visible { outline: 3px solid var(--amarillo); outline-offset: 1px; }
+.campo input[aria-invalid="true"] { border-color: #c4704f; }
+
+.admin-form .boton { justify-self: start; }
+.admin-form .boton--primario { width: 100%; }
+
+.admin-foto {
+  display: grid;
+  gap: .5rem;
+  padding: .75rem;
+  border: 1.5px dashed var(--linea);
+  border-radius: 12px;
+}
+.admin-foto img {
+  width: 100%;
+  max-height: 16rem;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--noche-3);
+}
+.admin-foto__info { color: var(--crema-tenue); font-size: .9rem; }
+.admin-foto__boton { cursor: pointer; }
+.admin-foto__boton:focus-within { outline: 3px solid var(--amarillo); outline-offset: 3px; }
+
+.admin-error {
+  padding: .75rem 1rem;
+  border: 1px solid #7a3a2a;
+  border-radius: 12px;
+  background: #3a1f1a;
+  color: #fff3e6;
+}
+
+.admin-ayuda {
+  margin-top: 2rem;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  background: var(--noche-2);
+  color: var(--crema-tenue);
+}
+.admin-ayuda summary { min-height: 32px; color: var(--crema); font-weight: 600; cursor: pointer; }
+.admin-ayuda ol { display: grid; gap: .6rem; margin: .8rem 0 0; padding-left: 1.2rem; }
+.admin-ayuda b, .admin-ayuda code { color: var(--crema); }
+
+/* ---------- Pestañas ---------- */
+.admin-pestanas {
+  display: flex;
+  gap: .4rem;
+  margin: 0 -1rem 1.25rem;
+  padding: 0 1rem .25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.admin-pestana {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  min-height: 44px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  background: var(--noche-2);
+  color: var(--crema-tenue);
+  font-size: .95rem;
+}
+.admin-pestana[aria-current="page"] { background: var(--amarillo); color: var(--tinta); font-weight: 600; }
+.admin-pestana--pronto { opacity: .55; }
+.admin-pestana small { font-family: var(--f-mano); font-size: 1rem; }
+
+/* ---------- Lista ---------- */
+.admin-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.admin-titulo .boton { min-height: 48px; padding: .6rem 1.2rem; }
+
+.admin-lista {
+  display: grid;
+  gap: .75rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.admin-item {
+  display: grid;
+  gap: .75rem;
+  padding: 1rem;
+  border: 1.5px solid var(--linea);
+  border-radius: 14px;
+  background: var(--noche-2);
+}
+.admin-item__datos { display: grid; gap: .15rem; }
+.admin-item__datos strong { font-size: 1.1rem; }
+.admin-item__datos span { color: var(--crema-tenue); font-size: .9rem; }
+.admin-item__ejemplo {
+  justify-self: start;
+  padding: 0 .5rem;
+  border-radius: 6px;
+  background: var(--noche-3);
+  color: var(--amarillo);
+  font-family: var(--f-mano);
+  font-size: 1.05rem;
+}
+.admin-item__acciones { display: flex; gap: .5rem; }
+.admin-item__acciones button {
+  flex: 1;
+  min-height: 46px;
+  border: 1.5px solid var(--linea);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--crema);
+  font: inherit;
+  cursor: pointer;
+}
+.admin-item__acciones .peligro { color: #f0a585; }
+
+.admin-pie {
+  display: grid;
+  gap: .75rem;
+  margin-top: 2.5rem;
+  color: var(--crema-tenue);
+  font-size: .9rem;
+}
+.admin-pie .boton { justify-self: start; font-size: 1rem; }
+
+/* ---------- Mensaje de estado (abajo) ---------- */
+.admin-estado {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  z-index: 30;
+  max-width: 30rem;
+  margin-inline: auto;
+  padding: .9rem 1.1rem;
+  border-radius: 14px;
+  background: var(--noche-3);
+  color: var(--crema);
+  box-shadow: var(--sombra);
+}
+.admin-estado--ok { background: var(--musgo-oscuro); }
+.admin-estado--error { background: #3a1f1a; border: 1px solid #7a3a2a; }

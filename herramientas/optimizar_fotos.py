@@ -70,7 +70,8 @@ def avisar_fotos_faltantes():
         nombre = recuerdo.get("foto")
         if not nombre or recuerdo.get("_placeholder"):
             continue
-        if not (DESTINO / f"{Path(nombre).stem}.webp").exists():
+        # Puede estar como <nombre>.webp (script) o con su nombre tal cual (subida desde el admin).
+        if not (DESTINO / f"{Path(nombre).stem}.webp").exists() and not (DESTINO / nombre).exists():
             print(f"Aviso: el recuerdo \"{recuerdo.get('titulo')}\" usa la foto {nombre}, "
                   f"pero no esta en fotos-originales/. Se va a ver un dibujo de flor en su lugar.")
 

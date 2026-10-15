@@ -6,6 +6,26 @@ Todo el contenido vive en `data/`. Para sumar recuerdos, cartas o preguntas **no
 
 ---
 
+## Admin: editar desde el celular, sin código
+
+Entrá a **https://arielkarsvnie.github.io/jardin-nocturno/admin.html**. Desde ahí podés agregar, editar y borrar recuerdos (con foto). Al tocar **Publicar**, la página hace los commits en GitHub sola, y el jardín se actualiza en 1 o 2 minutos. Las fotos se achican en el mismo celular y se suben sin GPS.
+
+**La primera vez necesitás un token** (una llave con permiso solo para este repo):
+
+1. Entrá a <https://github.com/settings/personal-access-tokens/new>.
+2. **Token name:** `jardin-admin`. **Expiration:** la que quieras (por ejemplo, 1 año).
+3. **Repository access:** *Only select repositories* → `jardin-nocturno`.
+4. **Permissions → Repository permissions → Contents:** *Read and write*.
+5. **Generate token**, copialo (empieza con `github_pat_`) y pegalo en el admin.
+
+El token queda guardado solo en ese navegador. Si usás otro celular o la compu, pegalo de nuevo ahí. En el admin hay un botón para olvidarlo. Si lo perdés o vence, creás otro: el viejo lo podés borrar desde la misma página de GitHub.
+
+> **Importante:** el admin hace commits directo en GitHub. Si después vas a editar algo en VS Code, primero corré `git pull` para traer esos cambios. Si no, vas a tener conflictos.
+
+Sin el token, `admin.html` solo muestra un candado: no deja ver ni cambiar nada.
+
+---
+
 ## Preparar la compu (una sola vez)
 
 ```bash

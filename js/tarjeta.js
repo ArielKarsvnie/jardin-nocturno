@@ -6,17 +6,13 @@ import { t } from './datos.js';
 import { crear, icono } from './dom.js';
 import { formatearFecha } from './fechas.js';
 import { abrirModal } from './modal.js';
+import { cargarFoto } from './rutas.js';
 
 let dialogo;
 let partes;
 let lista = [];
 let actual = 0;
 let alVer;
-
-// "primera-cita.jpg" → assets/fotos/primera-cita.webp (la versión que genera el script de fotos)
-function rutaFoto(nombre) {
-  return `assets/fotos/${nombre.replace(/\.[^./]+$/, '')}.webp`;
-}
 
 function sinFoto(recuerdo) {
   return crear('div', { class: 'tarjeta__sin-foto' },
@@ -27,8 +23,8 @@ function sinFoto(recuerdo) {
 
 function foto(recuerdo) {
   if (!recuerdo.foto) return sinFoto(recuerdo);
-  const img = crear('img', { src: rutaFoto(recuerdo.foto), alt: recuerdo.alt || recuerdo.titulo, decoding: 'async' });
-  img.addEventListener('error', () => img.replaceWith(sinFoto(recuerdo)), { once: true });
+  const img = crear('img', { alt: recuerdo.alt || recuerdo.titulo, decoding: 'async' });
+  cargarFoto(img, recuerdo.foto, () => img.replaceWith(sinFoto(recuerdo)));
   return img;
 }
 
