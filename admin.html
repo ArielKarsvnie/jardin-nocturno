@@ -42,7 +42,7 @@
           <li>Entrá a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
           <li><b>Token name:</b> jardin-admin. <b>Expiration:</b> lo que quieras (por ejemplo, 1 año).</li>
           <li><b>Repository access:</b> <i>Only select repositories</i> → <b>jardin-nocturno</b>.</li>
-          <li><b>Permissions → Repository permissions → Contents:</b> <i>Read and write</i>.</li>
+          <li><b>Permissions:</b> tocá <i>+ Add permissions</i> (o abrí <i>Repository permissions</i>), buscá <b>Contents</b> y ponelo en <i>Read and write</i>.</li>
           <li><b>Generate token</b>, copialo (empieza con <code>github_pat_</code>) y pegalo acá.</li>
         </ol>
       </details>
@@ -52,40 +52,36 @@
       <p class="manuscrita admin-cargando">Regando los datos…</p>
     </section>
 
-    <!-- Lista de recuerdos -->
-    <section data-vista="lista" hidden aria-labelledby="t-lista">
-      <nav class="admin-pestanas" aria-label="Qué editar">
-        <span class="admin-pestana" aria-current="page">Recuerdos</span>
-        <span class="admin-pestana admin-pestana--pronto">Cartas <small>pronto</small></span>
-        <span class="admin-pestana admin-pestana--pronto">Preguntas <small>pronto</small></span>
-        <span class="admin-pestana admin-pestana--pronto">Textos <small>pronto</small></span>
-      </nav>
+    <nav class="admin-pestanas" aria-label="Qué editar" data-pestanas hidden>
+      <button class="admin-pestana" type="button" data-pestana="recuerdos" aria-current="page">Recuerdos</button>
+      <button class="admin-pestana" type="button" data-pestana="cartas">Cartas</button>
+      <button class="admin-pestana" type="button" data-pestana="preguntas">Preguntas</button>
+      <span class="admin-pestana admin-pestana--pronto">Textos <small>pronto</small></span>
+    </nav>
+
+    <!-- ===================== Recuerdos ===================== -->
+    <section data-vista="lista-recuerdos" hidden aria-labelledby="t-lista-recuerdos">
       <div class="admin-titulo">
-        <h1 id="t-lista">Recuerdos</h1>
+        <h1 id="t-lista-recuerdos">Recuerdos</h1>
         <button class="boton boton--primario" type="button" data-accion="nuevo">+ Nuevo</button>
       </div>
       <ul class="admin-lista" data-lista></ul>
-      <footer class="admin-pie">
-        <p data-repo></p>
-        <button class="boton boton--secundario" type="button" data-accion="olvidar">Olvidar token en este navegador</button>
-      </footer>
     </section>
 
-    <!-- Formulario de un recuerdo -->
-    <section data-vista="formulario" hidden aria-labelledby="t-form">
+    <section data-vista="form-recuerdo" hidden aria-labelledby="t-form-recuerdo">
       <button class="juego-volver" type="button" data-accion="volver">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-flecha"/></svg> Volver a la lista
       </button>
-      <h1 id="t-form" tabindex="-1" data-titulo-form>Nuevo recuerdo</h1>
+      <h1 id="t-form-recuerdo" tabindex="-1" data-titulo-form>Nuevo recuerdo</h1>
 
       <form class="admin-form" data-form-recuerdo novalidate>
         <label class="campo">
           <span>Título *</span>
-          <input name="titulo" required maxlength="80" placeholder="La primera cita">
+          <input name="titulo" maxlength="80" placeholder="La primera cita">
         </label>
         <label class="campo">
           <span>Fecha *</span>
-          <input name="fecha" type="date" required>
+          <input name="fecha" type="date">
         </label>
 
         <div class="campo">
@@ -123,10 +119,108 @@
           </select>
         </label>
 
-        <p class="admin-error" data-error-form role="alert" hidden></p>
-        <button class="boton boton--primario" type="submit" data-publicar>Publicar</button>
+        <p class="admin-error" data-error role="alert" tabindex="-1" hidden></p>
+        <button class="boton boton--primario" type="submit">Publicar</button>
       </form>
     </section>
+
+    <!-- ===================== Cartas ===================== -->
+    <section data-vista="lista-cartas" hidden aria-labelledby="t-lista-cartas">
+      <div class="admin-titulo">
+        <h1 id="t-lista-cartas">Cartas</h1>
+        <button class="boton boton--primario" type="button" data-accion="nuevo">+ Nueva</button>
+      </div>
+      <p class="bajada">Cada carta queda sellada hasta su fecha (hora de Argentina).</p>
+      <ul class="admin-lista" data-lista></ul>
+    </section>
+
+    <section data-vista="form-carta" hidden aria-labelledby="t-form-carta">
+      <button class="juego-volver" type="button" data-accion="volver">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-flecha"/></svg> Volver a la lista
+      </button>
+      <h1 id="t-form-carta" tabindex="-1" data-titulo-form>Nueva carta</h1>
+
+      <form class="admin-form" data-form-carta novalidate>
+        <label class="campo">
+          <span>Título *</span>
+          <input name="titulo" maxlength="80" placeholder="Feliz cumple, Sofi">
+        </label>
+        <div class="admin-fila">
+          <label class="campo">
+            <span>Se abre el *</span>
+            <input name="fecha" type="date">
+          </label>
+          <label class="campo">
+            <span>a las</span>
+            <input name="hora" type="time" value="00:00">
+          </label>
+        </div>
+        <p class="admin-nota">Hora de Argentina, aunque ella esté en otro lado.</p>
+        <label class="campo">
+          <span>Mensaje del candado <small>(lo que ve si la toca antes)</small></span>
+          <input name="candado" maxlength="140" placeholder="Ni lo intentes. Bueno, intentalo, pero no se abre.">
+        </label>
+        <label class="campo">
+          <span>La carta *</span>
+          <textarea name="texto" rows="12" placeholder="Dejá una línea en blanco para separar párrafos."></textarea>
+        </label>
+        <label class="campo">
+          <span>Firma</span>
+          <input name="firma" maxlength="40" value="Arielito">
+        </label>
+
+        <p class="admin-error" data-error role="alert" tabindex="-1" hidden></p>
+        <button class="boton boton--primario" type="submit">Publicar</button>
+      </form>
+    </section>
+
+    <!-- ===================== Preguntas ===================== -->
+    <section data-vista="lista-preguntas" hidden aria-labelledby="t-lista-preguntas">
+      <div class="admin-titulo">
+        <h1 id="t-lista-preguntas">Preguntas</h1>
+        <button class="boton boton--primario" type="button" data-accion="nuevo">+ Nueva</button>
+      </div>
+      <p class="bajada">Las del juego de la semilla. Se juegan en este orden; lo ideal son 3 o 4.</p>
+      <ul class="admin-lista" data-lista></ul>
+    </section>
+
+    <section data-vista="form-pregunta" hidden aria-labelledby="t-form-pregunta">
+      <button class="juego-volver" type="button" data-accion="volver">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-flecha"/></svg> Volver a la lista
+      </button>
+      <h1 id="t-form-pregunta" tabindex="-1" data-titulo-form>Nueva pregunta</h1>
+
+      <form class="admin-form" data-form-pregunta novalidate>
+        <label class="campo">
+          <span>Pregunta *</span>
+          <input name="pregunta" maxlength="140" placeholder="¿Dónde nos conocimos?">
+        </label>
+
+        <fieldset class="campo admin-opciones">
+          <legend>Opciones * <small>(tocá el círculo de la correcta)</small></legend>
+          <div data-opciones></div>
+          <button class="boton boton--secundario" type="button" data-accion="agregar-opcion">+ Otra opción</button>
+        </fieldset>
+
+        <label class="campo">
+          <span>Si acierta</span>
+          <input name="siAcierta" maxlength="140" placeholder="¡Eso! Memoria de elefante.">
+        </label>
+        <label class="campo">
+          <span>Si se equivoca</span>
+          <input name="siFalla" maxlength="140" placeholder="No, pero me gusta cómo pensás.">
+        </label>
+        <p class="admin-nota">Si los dejás vacíos, se usan los mensajes genéricos.</p>
+
+        <p class="admin-error" data-error role="alert" tabindex="-1" hidden></p>
+        <button class="boton boton--primario" type="submit">Publicar</button>
+      </form>
+    </section>
+
+    <footer class="admin-pie" data-pie-admin hidden>
+      <p data-repo></p>
+      <button class="boton boton--secundario" type="button" data-accion="olvidar">Olvidar token en este navegador</button>
+    </footer>
   </main>
 
   <div class="admin-estado" data-estado role="status" aria-live="polite" hidden></div>

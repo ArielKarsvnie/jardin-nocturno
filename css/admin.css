@@ -91,6 +91,10 @@ body.admin { padding-bottom: 6rem; }
 }
 .admin-pestana {
   flex: none;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
   display: inline-flex;
   align-items: center;
   gap: .35rem;
@@ -102,7 +106,7 @@ body.admin { padding-bottom: 6rem; }
   font-size: .95rem;
 }
 .admin-pestana[aria-current="page"] { background: var(--amarillo); color: var(--tinta); font-weight: 600; }
-.admin-pestana--pronto { opacity: .55; }
+.admin-pestana--pronto { opacity: .55; cursor: default; }
 .admin-pestana small { font-family: var(--f-mano); font-size: 1rem; }
 
 /* ---------- Lista ---------- */
@@ -180,3 +184,71 @@ body.admin { padding-bottom: 6rem; }
 }
 .admin-estado--ok { background: var(--musgo-oscuro); }
 .admin-estado--error { background: #3a1f1a; border: 1px solid #7a3a2a; }
+
+/* ---------- Cartas y preguntas ---------- */
+.admin-fila {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: .75rem;
+}
+.admin-nota {
+  margin-top: -.6rem;
+  color: var(--crema-tenue);
+  font-size: .9rem;
+}
+
+.admin-opciones {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.admin-opciones legend { margin-bottom: .4rem; padding: 0; font-weight: 600; }
+.admin-opciones [data-opciones] { display: grid; gap: .5rem; margin-bottom: .6rem; }
+
+.admin-opcion {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: .4rem;
+}
+.admin-opcion__correcta {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 52px;
+  cursor: pointer;
+}
+.admin-opcion__correcta input {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  accent-color: var(--musgo);
+  cursor: pointer;
+}
+.admin-opcion input[type="text"] {
+  width: 100%;
+  min-height: 52px;
+  padding: .75rem .9rem;
+  border: 1.5px solid var(--linea);
+  border-radius: 12px;
+  background: var(--noche-2);
+  color: var(--crema);
+  font: inherit;
+  font-size: 1rem;
+}
+.admin-opcion:has(:checked) input[type="text"] { border-color: var(--musgo); }
+.admin-opcion input[aria-invalid="true"] { border-color: #c4704f; }
+.admin-opcion__quitar {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--crema-tenue);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.admin-opcion__quitar:disabled { opacity: .3; cursor: default; }
+
+.admin-item__acciones .admin-mover { flex: 0 0 46px; font-size: 1.2rem; }
+.admin-item__acciones button:disabled { opacity: .35; cursor: default; }
