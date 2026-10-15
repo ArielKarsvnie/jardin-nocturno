@@ -3,7 +3,7 @@
   "recuerdos": [
     {
       "id": "el-casamiento",
-      "_placeholder": true,
+      "_placeholder": false,
       "titulo": "El casamiento donde nos reencontramos",
       "fecha": "2025-09-07",
       "foto": "casamiento.jpg",
@@ -14,7 +14,7 @@
     },
     {
       "id": "primera-vez-en-tu-casa",
-      "_placeholder": true,
+      "_placeholder": false,
       "titulo": "Primera vez",
       "fecha": "2025-10-27",
       "foto": "su-casa.jpg",
