@@ -6,6 +6,7 @@
    - con la rotación del celular corregida,
    - SIN metadatos (se borra la ubicación GPS, el modelo del celular, etc.).
 3. Avisa si un recuerdo nombra una foto que no existe.
+4. Recuerda cuántos textos de ejemplo [REEMPLAZAR] quedan (no frena el commit).
 
 Lo corre solo el hook de git (herramientas/hooks/pre-commit). También se puede correr a mano:
     python herramientas/optimizar_fotos.py
@@ -74,6 +75,16 @@ def avisar_fotos_faltantes():
                   f"pero no esta en fotos-originales/. Se va a ver un dibujo de flor en su lugar.")
 
 
+def avisar_placeholders():
+    pendientes = []
+    for archivo in sorted(DATOS.glob("*.json")):
+        cantidad = archivo.read_text(encoding="utf-8").count("[REEMPLAZAR]")
+        if cantidad:
+            pendientes.append(f"{archivo.name} ({cantidad})")
+    if pendientes:
+        print("Recordatorio: quedan textos de ejemplo [REEMPLAZAR] en " + ", ".join(pendientes))
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     agregar_a_git = "--git-add" in sys.argv
@@ -115,6 +126,7 @@ def main():
             subprocess.run(["git", "add", "--", *[str(d) for _, d in pendientes]], cwd=RAIZ, check=True)
 
     avisar_fotos_faltantes()
+    avisar_placeholders()
     return 0
 
 

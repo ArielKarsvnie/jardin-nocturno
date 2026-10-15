@@ -142,6 +142,9 @@ function responder(pregunta, opcion, boton) {
   el.siguiente.textContent = t(esLaUltima ? 'semilla.verQueBroto' : 'semilla.siguiente');
   el.siguiente.hidden = false;
   el.siguiente.focus({ preventScroll: true });
+  // En pantallas chicas el botón puede quedar abajo: lo traemos a la vista.
+  const suave = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el.siguiente.scrollIntoView({ block: 'nearest', behavior: suave ? 'smooth' : 'auto' });
 }
 
 function avanzar() {

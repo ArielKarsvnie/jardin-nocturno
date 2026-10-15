@@ -68,7 +68,6 @@ body {
   font-size: 1.0625rem;
   line-height: 1.55;
   font-optical-sizing: auto;
-  font-variation-settings: "SOFT" 60;
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
 }
@@ -91,7 +90,6 @@ h1, h2, h3 {
   margin: 0;
   font-weight: 600;
   line-height: 1.08;
-  font-variation-settings: "SOFT" 100;
   text-wrap: balance;
 }
 
@@ -277,6 +275,10 @@ body[data-ruta="entrada"] .pie { display: none; }
   transition: width .5s var(--facil);
 }
 .entrada[data-modo="pregunta"] .escena { width: min(48vw, 190px); }
+@media (max-height: 700px) {
+  .entrada[data-modo="pregunta"] .escena { width: min(36vw, 140px); }
+  .entrada { gap: .7rem; padding-top: 1rem; }
+}
 
 .escena__luna { fill: var(--blanco-flor); opacity: .92; }
 .escena__luna-sombra { fill: var(--noche); }
