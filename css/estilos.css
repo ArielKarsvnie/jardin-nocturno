@@ -247,23 +247,176 @@ body[data-ruta="entrada"] .pie { display: none; }
   padding: 2rem 0 calc(2rem + env(safe-area-inset-bottom));
   text-align: center;
 }
-.entrada__escena { width: min(68vw, 250px); margin-bottom: .5rem; }
+.entrada { position: relative; }
+.entrada__pantalla {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .9rem;
+  width: 100%;
+  animation: aparecer .45s var(--facil);
+}
 .entrada__saludo { color: var(--amarillo); font-size: 1.7rem; }
 .entrada h1 { font-size: clamp(2.4rem, 11vw, 3.2rem); }
 .entrada__texto { max-width: 28ch; color: var(--crema-tenue); }
-.entrada .boton { margin-top: .75rem; }
-.nota { color: var(--crema-tenue); font-size: 1.25rem; }
+.entrada__botones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .9rem;
+  margin-top: .75rem;
+}
+.nota { max-width: 26ch; color: var(--crema-tenue); font-size: 1.25rem; }
+
+/* --- Escena: la planta que crece --- */
+.escena {
+  width: min(68vw, 250px);
+  margin-bottom: .25rem;
+  overflow: visible;
+  transition: width .5s var(--facil);
+}
+.entrada[data-modo="pregunta"] .escena { width: min(48vw, 190px); }
 
 .escena__luna { fill: var(--blanco-flor); opacity: .92; }
 .escena__luna-sombra { fill: var(--noche); }
 .escena__tierra { fill: var(--tierra); }
-.brote__tallo { fill: none; stroke: var(--musgo); stroke-width: 3.5; stroke-linecap: round; }
-.brote__hoja { fill: var(--musgo); }
-.escena__brote {
+.escena__semilla { fill: #8a6a43; }
+.tallo { fill: none; stroke: var(--musgo); stroke-width: 3.5; stroke-linecap: round; }
+.hoja { fill: var(--musgo); }
+.pimpollo { fill: var(--blanco-flor); stroke: var(--musgo); stroke-width: 2; }
+
+.escena__planta {
   transform-box: fill-box;
   transform-origin: 50% 100%;
-  animation: brotar 1.2s var(--rebote) .3s both, mecerse 5s ease-in-out 1.6s infinite alternate;
+  animation: mecerse 5s ease-in-out infinite alternate;
 }
+
+/* Cada parte aparece creciendo desde su base */
+.parte {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform .8s var(--rebote), opacity .3s;
+}
+.parte.visible { transform: none; opacity: 1; }
+.hoja--izq { transform-origin: 100% 100%; transition-delay: .25s; }
+.hoja--der { transform-origin: 0% 100%; transition-delay: .35s; }
+.escena__semilla, .pimpollo { transform-origin: 50% 50%; }
+.parte--flor {
+  transform-origin: 50% 50%;
+  transform: scale(0) rotate(-120deg);
+  transition-duration: 1.1s;
+  transition-delay: .2s;
+}
+
+/* Gotas al responder */
+.gota { fill: #9fc3d6; opacity: 0; transform-box: fill-box; }
+.escena.regando .gota { animation: caer .9s ease-in both; }
+.escena.regando .gota:nth-child(2) { animation-delay: .15s; }
+.escena.regando .gota:nth-child(3) { animation-delay: .3s; }
+@keyframes caer {
+  0% { opacity: 0; transform: translateY(-8px); }
+  25% { opacity: .9; }
+  100% { opacity: 0; transform: translateY(55px); }
+}
+
+/* Lluvia de pétalos al florecer */
+.petalos {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.petalo {
+  position: absolute;
+  top: 12%;
+  left: var(--x);
+  width: 10px;
+  height: 16px;
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  background: var(--blanco-flor);
+  opacity: 0;
+  animation: caer-petalo var(--t, 2.6s) ease-in var(--d, 0s) forwards;
+}
+.petalo--amarillo { background: var(--amarillo); }
+@keyframes caer-petalo {
+  0% { opacity: 0; transform: translate(0, 0) rotate(0); }
+  10% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx), 75vh) rotate(var(--giro)); }
+}
+
+/* --- Preguntas --- */
+.entrada__progreso { color: var(--amarillo); font-size: 1.35rem; }
+.entrada__pregunta {
+  max-width: 22ch;
+  font-size: clamp(1.6rem, 7vw, 2rem);
+}
+.opciones {
+  display: grid;
+  gap: .7rem;
+  width: 100%;
+  margin: .4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.opcion {
+  position: relative;
+  width: 100%;
+  min-height: 58px;
+  padding: .85rem 3rem .85rem 1.1rem;
+  border: 1.5px solid var(--linea);
+  border-radius: var(--borde-a-mano);
+  background: var(--noche-2);
+  color: var(--crema);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform .15s var(--facil), background-color .25s, border-color .25s, opacity .3s;
+}
+.opcion:active { transform: scale(.97); }
+.opcion:disabled { cursor: default; }
+.opciones.respondida .opcion:not(.opcion--bien, .opcion--mal, .opcion--era) { opacity: .45; }
+
+.opcion::after {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  translate: 0 -50%;
+  font-family: var(--f-mano);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.opcion--bien { border-color: var(--musgo); background: var(--musgo-oscuro); }
+.opcion--bien::after { content: "✓"; color: var(--amarillo-claro); }
+.opcion--mal { border-color: #c4704f; background: #3a221a; animation: sacudir .4s; }
+.opcion--mal::after { content: "✗"; color: #f0a585; }
+.opcion--era { padding-right: 5.5rem; border-color: var(--musgo); border-style: dashed; }
+.opcion--era::after { content: "era esta"; font-size: 1.15rem; color: var(--musgo); }
+@keyframes sacudir {
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.entrada__reaccion {
+  min-height: 1.5em;
+  max-width: 26ch;
+  color: var(--amarillo-claro);
+}
+.entrada__reaccion:empty { display: none; }
+
+.entrada__final {
+  font-size: clamp(2.6rem, 12vw, 3.4rem);
+  color: var(--amarillo);
+}
+
+.boton--secundario {
+  background: transparent;
+  color: var(--crema);
+  border: 1.5px solid rgb(184 173 151 / .45);
+}
+.boton--secundario:active { transform: scale(.96); }
 
 @keyframes brotar {
   from { transform: scale(0); opacity: 0; }

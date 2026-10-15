@@ -14,10 +14,30 @@
 
   "entrada": {
     "saludo": "Hola, So.",
+    "saludoVuelta": "Hola de nuevo, Sofi.",
     "titulo": "Esto es un jardín",
-    "texto": "Por ahora es tierra y buenas intenciones. Pero tiene futuro, como nosotros.",
+    "texto": "Por ahora es tierra y buenas intenciones. Para que brote algo, hay que regarlo con un par de preguntas.",
+    "textoVuelta": "La semilla ya está plantada y la flor sigue firme. ¿Pasás directo o la regamos de nuevo?",
     "boton": "Plantar la semilla",
-    "nota": "(tranqui, no hay que regar nada)"
+    "nota": "(no hay respuestas incorrectas; bueno, sí hay, pero la planta crece igual)",
+    "entrarDirecto": "Entrar directo",
+    "jugarDeNuevo": "Jugar de nuevo"
+  },
+
+  "semilla": {
+    "progreso": "Pregunta {i} de {n}",
+    "siguiente": "Seguir regando",
+    "verQueBroto": "Ver qué brotó",
+    "bienGenerico": "¡Eso! Se nota que prestás atención.",
+    "malGenerico": "Mmm, no. Pero la planta es optimista y crece igual.",
+    "final": {
+      "titulo": "¡Brotó!",
+      "todas": "{b} de {n}. Sabés más de nosotros que yo.",
+      "algunas": "{b} de {n}. Aprobada, con una ayudita del jardinero.",
+      "ninguna": "{b} de {n}. Igual te dejo pasar: el jardín es tuyo.",
+      "sinPreguntas": "Hoy no hubo preguntas. Brotó igual, de puro cariño.",
+      "boton": "Entrar al jardín"
+    }
   },
 
   "jardin": {

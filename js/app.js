@@ -2,7 +2,6 @@
 // Es una sola página a propósito: así la música no se corta al cambiar de sección.
 
 import { cargarTextos, aplicarTextos } from './datos.js';
-import { yaPlantoLaSemilla } from './estado.js';
 import * as entrada from './entrada.js';
 import * as jardin from './jardin.js';
 import * as cartas from './cartas.js';
@@ -11,10 +10,11 @@ import * as juegos from './juegos.js';
 const SECCIONES = { entrada, jardin, cartas, juegos };
 const montadas = new Set();
 
+// Sin #sección (por ejemplo, al abrir desde el tag NFC) siempre se arranca por la entrada:
+// la primera vez con el juego, después con el botón "entrar directo".
 function rutaActual() {
   const id = location.hash.slice(1);
-  if (id in SECCIONES) return id;
-  return yaPlantoLaSemilla() ? 'jardin' : 'entrada';
+  return id in SECCIONES ? id : 'entrada';
 }
 
 async function mostrar(id, { enfocar = true } = {}) {
@@ -33,14 +33,16 @@ async function mostrar(id, { enfocar = true } = {}) {
   if (enfocar) seccion.querySelector('h1')?.focus({ preventScroll: true });
 
   // Cada sección se arma una sola vez, la primera vez que se visita.
-  if (!montadas.has(id)) {
-    montadas.add(id);
-    try {
+  // Si además tiene alMostrar(), se llama cada vez que se entra.
+  try {
+    if (!montadas.has(id)) {
+      montadas.add(id);
       await SECCIONES[id].montar(seccion);
-    } catch (error) {
-      console.error(error);
-      mostrarAviso(`Algo no brotó en "${id}": ${error.message}`);
     }
+    SECCIONES[id].alMostrar?.(seccion);
+  } catch (error) {
+    console.error(error);
+    mostrarAviso(`Algo no brotó en "${id}": ${error.message}`);
   }
 }
 
