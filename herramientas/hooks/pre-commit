@@ -1,0 +1,12 @@
+#!/bin/sh
+# Antes de cada commit: revisa los JSON y optimiza las fotos nuevas de fotos-originales/.
+# Se activa una sola vez con:  git config core.hooksPath herramientas/hooks
+
+for py in python python3 py; do
+  if command -v "$py" >/dev/null 2>&1; then
+    exec "$py" herramientas/optimizar_fotos.py --git-add
+  fi
+done
+
+echo "No encontre Python: no puedo optimizar fotos ni revisar los JSON."
+exit 1

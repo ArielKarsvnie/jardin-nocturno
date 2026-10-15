@@ -42,9 +42,13 @@ export function tn(clave, n) {
   return interpolar(n === 1 ? valor.uno : valor.varios, { n });
 }
 
-// Rellena todos los elementos con data-texto="clave".
+// Rellena todos los elementos con data-texto="clave" (texto visible)
+// y data-texto-aria="clave" (nombre para lectores de pantalla, en botones con solo ícono).
 export function aplicarTextos(raiz = document) {
   for (const el of raiz.querySelectorAll('[data-texto]')) {
     el.textContent = t(el.dataset.texto);
+  }
+  for (const el of raiz.querySelectorAll('[data-texto-aria]')) {
+    el.setAttribute('aria-label', t(el.dataset.textoAria));
   }
 }

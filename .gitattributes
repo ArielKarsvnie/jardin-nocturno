@@ -1,0 +1,2 @@
+# El hook es un script de shell: tiene que quedar con saltos de línea Unix.
+herramientas/hooks/* text eol=lf

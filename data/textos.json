@@ -24,10 +24,19 @@
     "titulo": "El jardín",
     "bajada": "Cada flor es un recuerdo. Tocalas sin miedo, que no pinchan.",
     "contador": {
-      "uno": "{n} recuerdo germinando",
-      "varios": "{n} recuerdos germinando"
+      "uno": "{n} flor y contando",
+      "varios": "{n} flores y contando"
     },
+    "nueva": "¡nueva!",
     "vacio": "Todavía no brotó nada. El jardinero es lento, pero constante."
+  },
+
+  "tarjeta": {
+    "cerrar": "Cerrar recuerdo",
+    "anterior": "Recuerdo anterior",
+    "siguiente": "Recuerdo siguiente",
+    "posicion": "{i} de {n}",
+    "fotoPendiente": "La foto se está revelando. Tardan, estas cosas."
   },
 
   "cartas": {

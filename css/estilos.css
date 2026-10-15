@@ -353,34 +353,262 @@ body[data-ruta="entrada"] .pie { display: none; }
   color: var(--crema-tenue);
 }
 
-/* ---------- Jardín (vista provisoria de Etapa 1: un cantero con brotes) ---------- */
-.cantero { margin-top: .5rem; }
-.cantero__brotes {
+/* ---------- Jardín ---------- */
+.cantero {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  row-gap: 1.25rem;
+  margin-top: .5rem;
+}
+
+.flor {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-end;
-  gap: .25rem 1.25rem;
-  padding: 0 1rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
 }
-.brote {
-  width: 44px;
-  height: 54px;
-  color: var(--musgo);
+
+.flor__planta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transform-origin: 50% 100%;
-  animation: brotar .9s var(--rebote) calc(.2s + var(--i, 0) * .15s) both;
+  animation:
+    brotar .9s var(--rebote) calc(.15s + var(--i, 0) * .12s) both,
+    mecerse calc(4.5s + var(--i, 0) * .37s) ease-in-out calc(1.2s + var(--i, 0) * .2s) infinite alternate;
 }
-.cantero__tierra {
-  height: 26px;
-  margin-top: -4px;
-  border-radius: 50% 50% 14px 14px / 100% 100% 14px 14px;
+
+.flor__cabeza {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin-bottom: -10px;
+  border-radius: 50%;
+  /* Brillito bajo la luna, sin filtros caros */
+  background: radial-gradient(circle, rgb(248 223 147 / .16) 0%, transparent 68%);
+  transition: transform .25s var(--rebote);
+}
+.flor__cabeza svg { width: 62px; height: 62px; }
+
+.flor__tallo {
+  position: relative;
+  width: 3px;
+  height: var(--alto, 90px);
+  border-radius: 2px;
+  background: var(--musgo);
+}
+/* Una hojita por tallo */
+.flor__tallo::before {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 2px;
+  width: 18px;
+  height: 9px;
+  border-radius: 0 100% 0 100%;
+  background: var(--musgo);
+  transform: rotate(-24deg);
+  transform-origin: 0 50%;
+}
+.flor:nth-child(even) .flor__tallo::before {
+  left: auto;
+  right: 2px;
+  border-radius: 100% 0 100% 0;
+  transform: rotate(24deg);
+  transform-origin: 100% 50%;
+}
+
+/* Montículos que se pisan entre sí y forman una franja de tierra por fila */
+.flor__tierra {
+  width: 118%;
+  height: 22px;
+  margin-top: -3px;
+  border-radius: 50% 50% 8px 8px / 100% 100% 8px 8px;
   background: linear-gradient(var(--tierra), var(--tierra-2));
 }
+
+.flor__fecha {
+  margin-top: .3rem;
+  color: var(--crema-tenue);
+  font-size: 1.15rem;
+}
+
+.flor:active .flor__cabeza { transform: scale(.9) rotate(-8deg); }
+
+/* Flor agregada desde la última visita */
+.flor--nueva .flor__cabeza {
+  background: radial-gradient(circle, rgb(248 223 147 / .38) 0%, transparent 70%);
+  animation: latido 2.4s ease-in-out infinite;
+}
+.flor__nueva {
+  position: absolute;
+  top: -1.4rem;
+  z-index: 1;
+  padding: 0 .45rem;
+  border-radius: 8px;
+  background: var(--amarillo);
+  color: var(--tinta);
+  font-size: 1.1rem;
+  font-weight: 700;
+  transform: rotate(-6deg);
+}
+@keyframes latido {
+  50% { transform: scale(1.08); }
+}
+
 .contador {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   text-align: center;
   color: var(--amarillo);
 }
+
+/* ---------- Tarjeta de recuerdo ---------- */
+html.con-modal { overflow: hidden; }
+
+.tarjeta {
+  width: min(100% - 1.5rem, 26rem);
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 1.6rem 0 0;
+  border: 0;
+  background: transparent;
+  color: var(--tinta);
+  overflow: visible;
+}
+.tarjeta::backdrop {
+  background: rgb(10 8 7 / .82);
+}
+
+.tarjeta__papel {
+  max-height: calc(100dvh - 9.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1rem 1.1rem 1.4rem;
+  border-radius: 6px;
+  background: var(--papel);
+  box-shadow: var(--sombra);
+  transform: rotate(var(--giro, 0deg));
+  touch-action: pan-y;
+}
+.tarjeta__papel.entra { animation: abrir-tarjeta .5s var(--rebote); }
+.tarjeta__papel.entra-desde-der { animation: entra-der .35s var(--facil); }
+.tarjeta__papel.entra-desde-izq { animation: entra-izq .35s var(--facil); }
+
+@keyframes abrir-tarjeta {
+  from { opacity: 0; transform: translateY(30px) scale(.85) rotate(-6deg); }
+}
+@keyframes entra-der {
+  from { opacity: 0; transform: translateX(40px) rotate(3deg); }
+}
+@keyframes entra-izq {
+  from { opacity: 0; transform: translateX(-40px) rotate(-3deg); }
+}
+
+.tarjeta__polaroid {
+  margin: 0 0 1rem;
+  padding: .6rem .6rem .2rem;
+  background: #fffdf7;
+  box-shadow: 0 2px 8px -3px rgb(42 33 26 / .45);
+  transform: rotate(-1deg);
+}
+.tarjeta__foto {
+  min-height: 12rem;
+  background: #e8dfca;
+}
+.tarjeta__foto img {
+  width: 100%;
+  max-height: 44dvh;
+  object-fit: cover;
+}
+.tarjeta__polaroid figcaption {
+  padding: .45rem .2rem .35rem;
+  color: var(--tinta-suave);
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.tarjeta__sin-foto {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: .5rem;
+  min-height: 14rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--tinta-suave);
+}
+.tarjeta__sin-foto svg { width: 96px; height: 96px; }
+
+.tarjeta__fecha {
+  color: var(--tinta-ambar);
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.tarjeta h2 {
+  margin-top: .2rem;
+  font-size: 1.7rem;
+}
+.tarjeta__texto {
+  display: grid;
+  gap: .7rem;
+  margin-top: .7rem;
+  color: var(--tinta-suave);
+}
+
+.tarjeta__cerrar {
+  position: absolute;
+  top: .2rem;
+  right: -.2rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--amarillo);
+  color: var(--tinta);
+  box-shadow: 0 4px 0 var(--amarillo-sombra);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.tarjeta__cerrar svg { width: 24px; height: 24px; }
+.tarjeta__cerrar:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--amarillo-sombra); }
+
+.tarjeta__pasos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .9rem .25rem 0;
+  color: var(--crema);
+}
+.boton-redondo {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1.5px solid var(--linea);
+  border-radius: 50%;
+  background: var(--noche-2);
+  color: var(--crema);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.boton-redondo svg { width: 24px; height: 24px; }
+.boton-redondo:active { transform: scale(.92); }
 
 /* ---------- Tarjeta simple sobre la noche ---------- */
 .tarjeta-suave {

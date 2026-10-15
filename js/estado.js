@@ -18,6 +18,41 @@ export function marcarSemillaPlantada() {
   }
 }
 
+// Recuerdos que ya vio, para marcar con "¡nueva!" las flores que se agreguen después.
+const CLAVE_VISTOS = 'jardin-nocturno:recuerdos-vistos';
+
+function leerVistos() {
+  try {
+    const vistos = JSON.parse(localStorage.getItem(CLAVE_VISTOS));
+    return Array.isArray(vistos) ? vistos : null;
+  } catch {
+    return null;
+  }
+}
+
+function guardarVistos(ids) {
+  try {
+    localStorage.setItem(CLAVE_VISTOS, JSON.stringify(ids));
+  } catch {
+    // Sin almacenamiento simplemente no hay flores "nuevas".
+  }
+}
+
+// La primera visita no marca nada como nuevo: todo el jardín es nuevo.
+export function recuerdosNuevos(ids) {
+  const vistos = leerVistos();
+  if (!vistos) {
+    guardarVistos(ids);
+    return new Set();
+  }
+  return new Set(ids.filter((id) => !vistos.includes(id)));
+}
+
+export function marcarRecuerdoVisto(id) {
+  const vistos = leerVistos() ?? [];
+  if (!vistos.includes(id)) guardarVistos([...vistos, id]);
+}
+
 export function ir(seccion) {
   location.hash = seccion;
 }
