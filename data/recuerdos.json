@@ -25,13 +25,12 @@
     },
     {
       "id": "ejemplo-tercero",
-      "_placeholder": true,
-      "titulo": "[REEMPLAZAR] Un recuerdo cualquiera",
-      "fecha": "2026-03-01",
-      "foto": "ejemplo-tercero.jpg",
-      "alt": "[REEMPLAZAR] Descripción corta de la foto",
-      "texto": "[REEMPLAZAR] La anécdota.",
-      "pie": "[REEMPLAZAR] El chiste"
+      "titulo": "La despedida",
+      "fecha": "2025-12-11",
+      "foto": "ejemplo-tercero.webp",
+      "texto": "Sabiendo que te ibas a ir por 3 meses a miles de kilometros, solo quería estar al lado tuyo hasta el ultimo momento posible.",
+      "pie": "Me abandonaste",
+      "flor": "jazmin"
     }
   ]
 }
