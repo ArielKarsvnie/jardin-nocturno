@@ -1,16 +1,13 @@
 {
   "_nota": "Cada carta se abre en la fecha de \"abre\" (hora de Argentina, por eso termina en -03:00). \"candado\" es lo que se ve mientras está cerrada. \"texto\" es una lista de párrafos.",
-
   "cartas": [
     {
       "id": "cumple-2026",
-      "_placeholder": true,
-      "titulo": "Feliz cumple, Sofi",
+      "titulo": "Feliz cumple, mi amor",
       "abre": "2026-11-09T00:00:00-03:00",
       "candado": "Ni lo intentes. Bueno, intentalo, pero no se abre hasta tu cumple.",
       "texto": [
-        "[REEMPLAZAR] Primer párrafo de la carta.",
-        "[REEMPLAZAR] Segundo párrafo."
+        "Hoy queria decirte todo lo que siento por este medio. Se que capaz no es el más romantico, pero es lo que se hacer jajaja. \nDesde el día que te conocí cambiaste mi vida, y desde entonces supe que tenia que ser con vos. Nunca me voy a olvidar de algo que te dije en una de nuestras primeras \"dudas\", que siempre existira la manera de que construyamos este camino juntos, y día a día creo que se demuestra. \nTuvimos peleas, pensamientos diferentes o momentos dificiles, pero se que junto a vos todo es más facil. \nDesde ya te queria desear un muy muy feliz cumpleaños, que puedas pasarlo con todos y que seas tan feliz como me haces sentir vos a mi. \nTe amo con todo mi corazon."
       ],
       "firma": "Arielito"
     },
