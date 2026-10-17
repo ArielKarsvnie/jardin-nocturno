@@ -19,6 +19,12 @@ addEventListener('beforeunload', (e) => {
 let actual = 'recuerdos';
 
 async function irA(nombre) {
+  // GitHub Pages deja que el navegador guarde los archivos hasta 10 minutos. Si justo hubo una
+  // actualización, la página puede ser nueva y el código viejo (o al revés).
+  if (!SECCIONES[nombre]) {
+    estado('El admin se actualizó y este navegador tiene una parte vieja guardada. Cerrá y volvé a abrir la página (si sigue, esperá unos minutos).', 'error');
+    return;
+  }
   actual = nombre;
   for (const pestana of document.querySelectorAll('[data-pestana]')) {
     if (pestana.dataset.pestana === nombre) pestana.setAttribute('aria-current', 'page');
