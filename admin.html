@@ -56,7 +56,7 @@
       <button class="admin-pestana" type="button" data-pestana="recuerdos" aria-current="page">Recuerdos</button>
       <button class="admin-pestana" type="button" data-pestana="cartas">Cartas</button>
       <button class="admin-pestana" type="button" data-pestana="preguntas">Preguntas</button>
-      <span class="admin-pestana admin-pestana--pronto">Textos <small>pronto</small></span>
+      <button class="admin-pestana" type="button" data-pestana="textos">Textos</button>
     </nav>
 
     <!-- ===================== Recuerdos ===================== -->
@@ -215,6 +215,17 @@
         <p class="admin-error" data-error role="alert" tabindex="-1" hidden></p>
         <button class="boton boton--primario" type="submit">Publicar</button>
       </form>
+    </section>
+
+    <!-- ===================== Textos ===================== -->
+    <section data-vista="lista-textos" hidden aria-labelledby="t-lista-textos">
+      <h1 id="t-lista-textos">Textos</h1>
+      <p class="bajada">Todos los textos de la página y la canción. Abrí una sección, cambiá lo que quieras y guardá.</p>
+      <div class="admin-grupos" data-textos></div>
+      <p class="admin-error" data-error role="alert" tabindex="-1" hidden></p>
+      <div class="admin-guardar">
+        <button class="boton boton--primario" type="button" data-guardar-textos disabled>Sin cambios</button>
+      </div>
     </section>
 
     <footer class="admin-pie" data-pie-admin hidden>

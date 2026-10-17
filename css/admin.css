@@ -252,3 +252,73 @@ body.admin { padding-bottom: 6rem; }
 
 .admin-item__acciones .admin-mover { flex: 0 0 46px; font-size: 1.2rem; }
 .admin-item__acciones button:disabled { opacity: .35; cursor: default; }
+
+/* ---------- Textos ---------- */
+.admin-grupos { display: grid; gap: .6rem; margin-top: 1.25rem; }
+.admin-grupo {
+  border: 1.5px solid var(--linea);
+  border-radius: 14px;
+  background: var(--noche-2);
+}
+.admin-grupo summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  min-height: 56px;
+  padding: 0 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.admin-grupo summary::-webkit-details-marker { display: none; }
+.admin-grupo summary::after { content: "+"; color: var(--amarillo); font-size: 1.4rem; }
+.admin-grupo[open] summary::after { content: "−"; }
+.admin-grupo summary small {
+  margin-left: auto;
+  color: var(--amarillo);
+  font-family: var(--f-mano);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+.admin-grupo__campos { display: grid; gap: 1.1rem; padding: .25rem 1rem 1.2rem; }
+
+.admin-campo-texto > span { font-size: .95rem; }
+.admin-campo-texto input,
+.admin-campo-texto textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: .65rem .85rem;
+  border: 1.5px solid var(--linea);
+  border-radius: 12px;
+  background: var(--noche);
+  color: var(--crema);
+  font: inherit;
+  font-size: 1rem;
+}
+.admin-campo-texto textarea { resize: vertical; line-height: 1.45; }
+.admin-campo-texto--cambiado input,
+.admin-campo-texto--cambiado textarea { border-color: var(--amarillo); }
+.admin-campo-texto--error input,
+.admin-campo-texto--error textarea { border-color: #c4704f; }
+.admin-variables { color: var(--crema-tenue); font-size: .82rem; }
+
+.admin-plural { display: grid; gap: .5rem; }
+.admin-plural label { display: grid; gap: .25rem; }
+.admin-plural label > span { color: var(--crema-tenue); font-size: .85rem; }
+
+.admin-lista-textos { display: grid; gap: .5rem; margin-bottom: .5rem; }
+.admin-lista-textos__fila { display: grid; grid-template-columns: 1fr 44px; align-items: center; gap: .3rem; }
+.admin-lista-textos__agregar { min-height: 44px; padding: .4rem 1rem; font-size: 1rem; }
+
+/* Botón de guardar siempre a mano */
+.admin-guardar {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  margin: 1rem -1rem 0;
+  padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+  background: linear-gradient(transparent, var(--noche) 35%);
+}
+.admin-guardar .boton { width: 100%; }
+.admin-guardar .boton:disabled { opacity: .5; cursor: default; }

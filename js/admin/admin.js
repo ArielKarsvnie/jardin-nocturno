@@ -1,14 +1,21 @@
 // Admin del jardín: editar recuerdos, cartas y preguntas sin tocar código.
 // Cada "Publicar" hace los commits en GitHub; la página se actualiza sola en 1 o 2 minutos.
-// Cada pestaña vive en su propio archivo (recuerdos.js, cartas.js, preguntas.js).
+// Cada pestaña vive en su propio archivo (recuerdos.js, cartas.js, preguntas.js, textos.js).
 
 import { REPO, leerToken, guardarToken, olvidarToken, probarToken } from './github.js';
 import { $, vista, estado, sinEstado } from './ui.js';
 import * as recuerdos from './recuerdos.js';
 import * as cartas from './cartas.js';
 import * as preguntas from './preguntas.js';
+import * as textos from './textos.js';
 
-const SECCIONES = { recuerdos, cartas, preguntas };
+const SECCIONES = { recuerdos, cartas, preguntas, textos };
+
+// Si hay cambios sin guardar en la pestaña actual, pregunta antes de irse.
+const hayCambios = () => SECCIONES[actual].tieneCambios?.() ?? false;
+addEventListener('beforeunload', (e) => {
+  if (hayCambios()) e.preventDefault();
+});
 let actual = 'recuerdos';
 
 async function irA(nombre) {
@@ -70,6 +77,8 @@ $('[data-accion="olvidar"]').addEventListener('click', () => {
 
 for (const pestana of document.querySelectorAll('[data-pestana]')) {
   pestana.addEventListener('click', () => {
+    if (pestana.dataset.pestana === actual && !document.querySelector(`[data-vista="lista-${actual}"]`).hidden) return;
+    if (hayCambios() && !confirm('Tenés cambios sin guardar. ¿Salir igual?')) return;
     sinEstado();
     irA(pestana.dataset.pestana);
   });

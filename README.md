@@ -13,6 +13,7 @@ Entrá a **https://arielkarsvnie.github.io/jardin-nocturno/admin.html**. Tiene t
 - **Recuerdos:** agregar, editar y borrar flores, con foto.
 - **Cartas:** escribir cartas selladas y elegir el día y la hora en que se abren (hora de Argentina).
 - **Preguntas:** las del juego de la semilla, con sus opciones, la correcta marcada y el orden.
+- **Textos:** todos los textos de la página (botones, títulos, chistes) y la canción. Lo que cambiaste se marca en amarillo; guardás todo junto.
 
  Al tocar **Publicar**, la página hace los commits en GitHub sola, y el jardín se actualiza en 1 o 2 minutos. Las fotos se achican en el mismo celular y se suben sin GPS.
 
