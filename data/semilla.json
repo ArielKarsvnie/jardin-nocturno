@@ -19,22 +19,21 @@
       "siFalla": "No trates de engañarte"
     },
     {
-      "_placeholder": true,
-      "pregunta": "[REEMPLAZAR] Pregunta con chiste interno",
+      "pregunta": "Cual fue nuestra primera salida?",
       "opciones": [
         {
-          "texto": "[REEMPLAZAR] Respuesta correcta",
+          "texto": "Sanguche de milanesa, con un fail al final",
           "correcta": true
         },
         {
-          "texto": "[REEMPLAZAR] Opción absurda"
+          "texto": "Joda loca"
         },
         {
-          "texto": "[REEMPLAZAR] Opción más absurda todavía"
+          "texto": "Marte, pero se cancelo por lluvia"
         }
       ],
-      "siAcierta": "[REEMPLAZAR] Reacción si acierta",
-      "siFalla": "[REEMPLAZAR] Reacción si falla"
+      "siAcierta": "Y no me olvido que no te lo terminaste",
+      "siFalla": "No, pero un punto por la creatividad"
     },
     {
       "_placeholder": true,
