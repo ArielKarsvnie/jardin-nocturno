@@ -36,19 +36,24 @@
       "siFalla": "No, pero un punto por la creatividad"
     },
     {
-      "_placeholder": true,
-      "pregunta": "[REEMPLAZAR] Tercera pregunta",
+      "pregunta": "Cuanto te quiere Ariel?",
       "opciones": [
         {
-          "texto": "[REEMPLAZAR] Respuesta correcta",
-          "correcta": true
+          "texto": "Mucho"
         },
         {
-          "texto": "[REEMPLAZAR] Opción absurda"
+          "texto": "Muchisimo"
+        },
+        {
+          "texto": "Tanto como para armar esta pagina"
+        },
+        {
+          "texto": "Todas las anteriores y más que vos",
+          "correcta": true
         }
       ],
-      "siAcierta": "[REEMPLAZAR] Reacción si acierta",
-      "siFalla": "[REEMPLAZAR] Reacción si falla"
+      "siAcierta": "Muy bien, yo se que lo sabias",
+      "siFalla": "No, yo más"
     }
   ]
 }
