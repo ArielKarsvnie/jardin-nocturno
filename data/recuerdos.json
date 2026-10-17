@@ -48,6 +48,15 @@
       "alt": "No te tenia asi de salvaje",
       "texto": "No es nada tierno, pero al fin se nos dio la merienda con churros",
       "pie": "No me saques un dedo porfa"
+    },
+    {
+      "id": "las-cabanitas",
+      "titulo": "Las cabañitas",
+      "fecha": "2026-04-07",
+      "foto": "las-cabanitas.webp",
+      "alt": "Una escapadita o que?",
+      "texto": "Nos fuimos directamente a unas cabañas donde pudimos estar solos, comimos en una hamburgueseria al costado de la ruta, nos hicimos patitas, de todo.",
+      "pie": "No fue la mejor, pero fue una linda experiencia"
     }
   ]
 }
