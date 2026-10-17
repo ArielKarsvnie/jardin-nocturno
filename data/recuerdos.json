@@ -39,6 +39,15 @@
       "foto": "el-reencuentro.webp",
       "alt": "El momento esperado durante 3 meses",
       "texto": "Un dia volviste, despues de tanto tiempo de no vernos. Fue un momento que no me olvido mas, la cara sonriente de los dos porque sabiamos que la espera habia terminado y me volvi a enamorar de vos en el momento que te vi."
+    },
+    {
+      "id": "los-churros",
+      "titulo": "Los churros",
+      "fecha": "2026-06-02",
+      "foto": "los-churros.webp",
+      "alt": "No te tenia asi de salvaje",
+      "texto": "No es nada tierno, pero al fin se nos dio la merienda con churros",
+      "pie": "No me saques un dedo porfa"
     }
   ]
 }
