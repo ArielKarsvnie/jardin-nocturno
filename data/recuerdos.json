@@ -57,6 +57,15 @@
       "alt": "Una escapadita o que?",
       "texto": "Nos fuimos directamente a unas cabañas donde pudimos estar solos, comimos en una hamburgueseria al costado de la ruta, nos hicimos patitas, de todo.",
       "pie": "No fue la mejor, pero fue una linda experiencia"
+    },
+    {
+      "id": "el-prohibido",
+      "titulo": "El prohibido",
+      "fecha": "2026-07-28",
+      "foto": "el-prohibido.webp",
+      "alt": "Una buena noche",
+      "texto": "Esta foto me encanta. Hasta fumados se nos ve la cara de estupidos que tenemos cuando nos vemos a los ojos.",
+      "pie": "No me hagas burla por lo que comi despues"
     }
   ]
 }
